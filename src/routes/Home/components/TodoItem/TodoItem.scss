@@ -1,0 +1,20 @@
+@import 'base';
+.container {
+
+}
+
+
+.dialog {
+  @extend .flex-column-center;
+  align-items: center;  
+}
+.inputSection {
+  @extend .flex-row-center;
+  align-items: center;
+}
+.input {
+  margin: 0.5rem;
+}
+.button {
+  margin: 2rem;
+}

@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "bmimaterial-6c6b9",
+    "stage": "bmimaterial-6c6b9",
+    "prod": "bmimaterial-6c6b9"
+  }
+}

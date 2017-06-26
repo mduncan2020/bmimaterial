@@ -1,0 +1,27 @@
+@import 'base';
+.container {
+  //@extend .flex-column-center;
+  //align-items: center;
+  
+  //flex-basis: 60%;
+    @extend .flex-column-center;
+  align-items: center; 
+}
+.form {
+  @extend .flex-column-center;
+  align-items: center;
+  
+}
+.inputSection {
+  @extend .flex-row-center;
+  align-items: center;
+}
+.input {
+  margin: 0.5rem;
+}
+.button {
+  margin: 2rem;
+}
+.addButton {
+  margin: 1rem;  
+}
