@@ -1,9 +1,10 @@
-# react-redux-firebase Complete Material Example
+# BMI Material
+## Based on react-redux-firebase
 
 [![License][license-image]][license-url]
 [![Code Style][code-style-image]][code-style-url]
 
-This is a "real-world" example and is deployed to [demo.react-redux-firebase.com](https://demo.react-redux-firebase.com). Project was based on the output of [`generator-react-firebase`](https://github.com/prescottprue/generator-react-firebase), which generates a full project starter with `react-redux-firebase` included.
+Project was based on the output of [`generator-react-firebase`](https://github.com/prescottprue/generator-react-firebase), which generates a full project starter with `react-redux-firebase` included.
 
 ## Getting Started
 
@@ -15,7 +16,7 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 
 |`npm run <script>`|Description|
 |------------------|-----------|
-|`start`|Serves your app at `localhost:3000`. HMR will be enabled in development.|
+|`start`|Serves your app at `localhost:3000`. HMR (hot module reloading) will be enabled in development.|
 |`build:dev`|Same as `build` but overrides `NODE_ENV` to "development".|
 |`build:prod`|Same as `build` but overrides `NODE_ENV` to "production".|
 |`lint`|Lint all `.js` files.|
@@ -30,7 +31,9 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 
 ## Application Structure
 
-The application structure presented in this boilerplate is **fractal**, where functionality is grouped primarily by feature rather than file type. Please note, however, that this structure is only meant to serve as a guide, it is by no means prescriptive. That said, it aims to represent generally accepted guidelines and patterns for building scalable applications. If you wish to read more about this pattern, please check out this [awesome writeup](https://github.com/davezuko/react-redux-starter-kit/wiki/Fractal-Project-Structure) by [Justin Greenberg](https://github.com/justingreenberg).
+The application structure presented in this boilerplate is **fractal**, where functionality is grouped primarily by feature rather than file type. This is inline with generally accepted guidelines and patterns for building scalable applications. 
+
+If you wish to read more about this pattern, please check out this [awesome writeup](https://github.com/davezuko/react-redux-starter-kit/wiki/Fractal-Project-Structure) by [Justin Greenberg](https://github.com/justingreenberg).
 
 ```
 .
