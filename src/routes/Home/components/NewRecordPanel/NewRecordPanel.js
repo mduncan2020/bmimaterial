@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import Subheader from 'material-ui/Subheader'
-import classes from './NewTodoPanel.scss'
+import classes from './NewRecordPanel.scss'
 import { required, validateNumber, minValue1 } from 'utils/forms'
 import { Field, reduxForm, submit } from 'redux-form'
 import { RECORD_FORM_NAME } from 'constants'
@@ -17,7 +17,7 @@ const dialogContent = {
   margin: '50px'
 }
 
-class NewTodoPanel extends Component {
+class NewRecordPanel extends Component {
   static propTypes = {
     onNewClick: PropTypes.func,
     disabled: PropTypes.bool
@@ -118,46 +118,4 @@ class NewTodoPanel extends Component {
 
 export default reduxForm({
   form: RECORD_FORM_NAME
-})(NewTodoPanel)
-
-/**
- *
- *               
- */
-
-
-/**
- <FloatingActionButton className={classes.addButton} onTouchTap={this.onHandleDialogOpen} tooltip={disabled ? 'Login To Add Weight' : 'Add Weight Record'}>
-                <ContentAdd />
-            </FloatingActionButton>   
- * */
- 
-
-/*
-<TextField
-                floatingLabelText='New Weight'
-                ref='newWeight'
-                onChange={({ target }) => this.setState({weight: Number(target.value)})}
-              />
-*/
-
-/*
-<Paper className={classes.container}>
-            <Subheader>New Todo</Subheader>
-            <div className={classes.inputSection}>
-              <TextField
-                floatingLabelText='New Todo Text'
-                ref='newTodo'
-                onChange={({ target }) => this.setState({text: target.value})}
-              />
-              <IconButton
-                onClick={this.handleAdd}
-                disabled={disabled}
-                tooltipPosition='top-center'
-                tooltip={disabled ? 'Login To Add Todo' : 'Add Todo'}
-              >
-                <ContentAdd />
-              </IconButton>
-            </div>
-          </Paper>
- */
+})(NewRecordPanel)

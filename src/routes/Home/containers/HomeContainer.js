@@ -17,7 +17,7 @@ import { List } from 'material-ui/List'
 import Paper from 'material-ui/Paper'
 import Subheader from 'material-ui/Subheader'
 import TodoItem from '../components/TodoItem'
-import NewTodoPanel from '../components/NewTodoPanel'
+import NewRecordPanel from '../components/NewRecordPanel'
 import classes from './HomeContainer.scss'
 
 // const populates = [{ child: 'owner', root: 'users', keyProp: 'uid' }]
@@ -90,17 +90,17 @@ export default class Home extends Component {
   deleteTodo = (id) => {
     const { todos, auth, firebase } = this.props
     if (!auth || !auth.uid) {
-      return this.setState({ error: 'You must be Logged into Delete' })
+      return this.setState({ error: 'You must be logged in to delete' })
     }
     // return this.setState({ error: 'Delete example requires using populate' })
     // only works if populated
     if (todos[id].owner !== auth.uid) {
-      return this.setState({ error: 'You must own todo to delete' })
+      return this.setState({ error: 'You must own the record to delete' })
     }
     return firebase.remove(`/todos/${id}`)
       .catch((err) => {
-        console.error('Error removing todo: ', err) // eslint-disable-line no-console
-        this.setState({ error: 'Error Removing todo' })
+        console.error('Error removing record: ', err) // eslint-disable-line no-console
+        this.setState({ error: 'Error Removing Record' })
         return Promise.reject(err)
       })
   }
@@ -135,7 +135,7 @@ export default class Home extends Component {
             : null
         }  
         <div className={classes.addTodo}>
-            <NewTodoPanel
+            <NewRecordPanel
               onNewClick={this.handleAdd}
               disabled={false}
             />
