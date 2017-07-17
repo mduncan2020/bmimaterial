@@ -16,8 +16,7 @@ export const createRoutes = (store) => ({
     AccountRoute,
     LoginRoute,
     SignupRoute,
-    HomeRoute  
-    
+    HomeRoute
   ]
 })
 

@@ -70,7 +70,8 @@ export default class Home extends Component {
   }
 
   editTodo = (editContainer) => {
-    const { todos, auth, firebase } = this.props
+//    const { todos, auth, firebase } = this.props
+    const { auth } = this.props
     if (!auth || !auth.uid) {
       return this.setState({ error: 'You must be Logged in to Edit' })
     }
@@ -81,10 +82,10 @@ export default class Home extends Component {
     }
     return this.props.firebase.set(`/todos/${editContainer.id}`, editContainer.todo)
       .catch((err) => {
-          console.error('Error editting todo: ', err) // eslint-disable-line no-console
-          this.setState({ error: 'Error Editting todo' })
-          return Promise.reject(err)
-        })    
+        console.error('Error editting todo: ', err) // eslint-disable-line no-console
+        this.setState({ error: 'Error Editting todo' })
+        return Promise.reject(err)
+      })
   }
 
   deleteTodo = (id) => {
@@ -133,15 +134,14 @@ export default class Home extends Component {
               onRequestClose={() => this.setState({ error: null })}
               />
             : null
-        }  
+        }
         <div className={classes.addTodo}>
-            <NewRecordPanel
-              onNewClick={this.handleAdd}
-              disabled={false}
-            />
-          </div>      
+          <NewRecordPanel
+            onNewClick={this.handleAdd}
+            disabled={false}
+          />
+        </div>
         <div className={classes.todos}>
-          
           {
             !isLoaded(todos)
               ? <CircularProgress />

@@ -8,7 +8,7 @@ import {
   isLoaded,
   isEmpty
 } from 'react-redux-firebase'
-import {  
+import {
   ACCOUNT_PATH,
   LOGIN_PATH,
   SIGNUP_PATH,
@@ -121,7 +121,7 @@ export default class Navbar extends Component {
       <AppBar
         title={
           <Link to={accountExists ? `${HOME_PATH}` : '/'} className={classes.brand}>
-            BMI Material 
+            BMI Material
           </Link>
         }
         showMenuIconButton={false}

@@ -9,5 +9,5 @@ export const validateNumber = value => value && isNaN(Number(value)) ? 'Must be 
 
 const minValue = min => value =>
   value && value < min ? `Must be at least ${min}` : undefined
-  
+
 const minValue1 = minValue(1)

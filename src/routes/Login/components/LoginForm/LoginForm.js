@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import RaisedButton from 'material-ui/RaisedButton'
 import Checkbox from 'material-ui/Checkbox'
@@ -39,7 +38,7 @@ export const LoginForm = ({ handleSubmit, submitting }) => (
           label='Remember'
           labelStyle={{ fontSize: '.8rem' }}
         />
-      </div>      
+      </div>
     </div>
   </form>
 )
