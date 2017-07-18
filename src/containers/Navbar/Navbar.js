@@ -17,6 +17,7 @@ import {
 
 // Components
 import AppBar from 'material-ui/AppBar'
+import ActionHome from 'material-ui/svg-icons/action/home'
 import IconMenu from 'material-ui/IconMenu'
 import IconButton from 'material-ui/IconButton'
 import MenuItem from 'material-ui/MenuItem'
@@ -29,6 +30,12 @@ const buttonStyle = {
   color: 'white',
   textDecoration: 'none',
   alignSelf: 'center'
+}
+
+const homeStyle = {
+  color: 'white',
+  marginLeft: '24px',
+  marginRight: '24px'
 }
 
 const avatarStyles = {
@@ -99,6 +106,12 @@ export default class Navbar extends Component {
       </div>
     )
 
+    const homeMenu = (
+      <Link to={accountExists ? `${HOME_PATH}` : '/'} className={classes.brand}>
+          <ActionHome color='white' style={homeStyle}/>
+      </Link>      
+    )
+
     const rightMenu = accountExists ? (
       <IconMenu
         iconButtonElement={iconButton}
@@ -124,7 +137,8 @@ export default class Navbar extends Component {
             BMI Material
           </Link>
         }
-        showMenuIconButton={false}
+        showMenuIconButton={true}
+        iconElementLeft={homeMenu}
         iconElementRight={rightMenu}
         iconStyleRight={accountExists ? avatarStyles.wrapper : {}}
         className={classes.appBar}

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import IconButton from 'material-ui/IconButton'
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 import classes from './RecordDetailPanel.scss'
 import { required, validateNumber, minValue1 } from 'utils/forms'
@@ -78,8 +78,8 @@ class RecordDetailPanel extends Component {
                     />                  
                     
                     <div >
-                        <FlatButton label="Cancel" secondary={true} onTouchTap={this.onHandleDialogClose} />
-                        <FlatButton label="Save" primary={true} type='submit' onTouchTap={this.submitForm} />
+                        <FlatButton label="Cancel" secondary onTouchTap={this.onHandleDialogClose} />
+                        <FlatButton label="Save" primary type='submit' onTouchTap={this.submitForm} />
                     </div>
                 </form>
             

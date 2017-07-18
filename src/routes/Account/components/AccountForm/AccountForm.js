@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Link } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'components/TextField'
+import BinaryToggle from 'components/BinaryToggle'
 import { ACCOUNT_FORM_NAME } from 'constants'
 import ProviderDataForm from '../ProviderDataForm'
 import classes from './AccountForm.scss'
+
+import {
+  HOME_PATH
+} from 'constants'
+
 
 export const AccountForm = ({ account, handleSubmit, submitting }) => (
   <form className={classes.container} onSubmit={handleSubmit}>
@@ -19,6 +26,12 @@ export const AccountForm = ({ account, handleSubmit, submitting }) => (
       component={TextField}
       label='Email'
     />
+    <Field
+      name='height'
+      component={TextField}
+      label='Height'
+    />
+    <Field name='isMetric' component={BinaryToggle} label={account.isMetric ? 'Metric (cm / kg)': 'inches / lbs'} />   
     {
       !!account && !!account.providerData &&
         <div>
@@ -28,12 +41,22 @@ export const AccountForm = ({ account, handleSubmit, submitting }) => (
           />
         </div>
     }
+    <div>
+      <Link to={HOME_PATH}>
+        <RaisedButton
+        secondary
+        label='Cancel'            
+        className={classes.submit}
+      />
+    </Link>
     <RaisedButton
       primary
       label='Save'
       type='submit'
       className={classes.submit}
     />
+    </div>
+    
   </form>
 )
 

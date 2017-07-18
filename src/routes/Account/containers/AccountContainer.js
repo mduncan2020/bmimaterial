@@ -9,6 +9,10 @@ import LoadingSpinner from 'components/LoadingSpinner'
 import AccountForm from '../components/AccountForm/AccountForm'
 import classes from './AccountContainer.scss'
 
+import {
+  HOME_PATH
+} from 'constants'
+
 @UserIsAuthenticated // redirect to /login if user is not authenticated
 @firebaseConnect() // add this.props.firebase
 @connect( // Map redux state to props
@@ -18,6 +22,10 @@ import classes from './AccountContainer.scss'
   })
 )
 export default class Account extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
   static propTypes = {
     account: PropTypes.object,
     auth: PropTypes.shape({
@@ -39,13 +47,15 @@ export default class Account extends Component {
     })
   }
 
-  updateAccount = (newData) =>
+  updateAccount = (newData) => {
     this.props.firebase
       .update(`${rfConfig.userProfile}/${this.props.auth.uid}`, newData)
       .catch((err) => {
         console.error('Error updating account', err) // eslint-disable-line no-console
         // TODO: Display error to user
       })
+    this.context.router.push(HOME_PATH)
+  }
 
   render () {
     const { account } = this.props

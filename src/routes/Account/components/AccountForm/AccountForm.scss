@@ -10,8 +10,10 @@
 
 .submit {
   @extend .flex-column-center;
-  width: 30%;
+  //width: 30%;
   min-width: 192px;
   margin-top: 1.5rem;
   text-align: center;
+  display: inline;
+  margin-right: 24px;
 }
