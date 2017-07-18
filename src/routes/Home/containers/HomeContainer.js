@@ -16,7 +16,7 @@ import Snackbar from 'material-ui/Snackbar'
 import { List } from 'material-ui/List'
 import Paper from 'material-ui/Paper'
 import Subheader from 'material-ui/Subheader'
-import TodoItem from '../components/TodoItem'
+import RecordItem from '../components/RecordItem'
 import NewRecordPanel from '../components/NewRecordPanel'
 import classes from './HomeContainer.scss'
 
@@ -69,7 +69,7 @@ export default class Home extends Component {
     return firebase.set(`/todos/${id}/done`, !todo.done)
   }
 
-  editTodo = (editContainer) => {
+  editRecord = (editContainer) => {
 //    const { todos, auth, firebase } = this.props
     const { auth } = this.props
     if (!auth || !auth.uid) {
@@ -77,18 +77,18 @@ export default class Home extends Component {
     }
     // return this.setState({ error: 'Delete example requires using populate' })
     // only works if populated
-    if (editContainer.todo.owner !== auth.uid) {
-      return this.setState({ error: 'You must own todo to Edit' })
+    if (editContainer.record.owner !== auth.uid) {
+      return this.setState({ error: 'You must own the record to Edit' })
     }
-    return this.props.firebase.set(`/todos/${editContainer.id}`, editContainer.todo)
+    return this.props.firebase.set(`/todos/${editContainer.id}`, editContainer.record)
       .catch((err) => {
-        console.error('Error editting todo: ', err) // eslint-disable-line no-console
-        this.setState({ error: 'Error Editting todo' })
+        console.error('Error editting record: ', err) // eslint-disable-line no-console
+        this.setState({ error: 'Error Editting record' })
         return Promise.reject(err)
       })
   }
 
-  deleteTodo = (id) => {
+  deleteRecord = (id) => {
     const { todos, auth, firebase } = this.props
     if (!auth || !auth.uid) {
       return this.setState({ error: 'You must be logged in to delete' })
@@ -106,17 +106,17 @@ export default class Home extends Component {
       })
   }
 
-  handleAdd = (newTodo) => {
+  handleAdd = (newRecord) => {
     // Attach user if logged in
     if (this.props.auth) {
-      newTodo.owner = this.props.auth.uid
+      newRecord.owner = this.props.auth.uid
     } else {
-      newTodo.owner = 'Anonymous'
+      newRecord.owner = 'Anonymous'
     }
     // attach a timestamp
-    newTodo.createdAt = this.props.firebase.database.ServerValue.TIMESTAMP
+    newRecord.createdAt = this.props.firebase.database.ServerValue.TIMESTAMP
     // using this.props.firebase.pushWithMeta here instead would automatically attach createdBy and createdAt
-    return this.props.firebase.push('/todos', newTodo)
+    return this.props.firebase.push('/todos', newRecord)
   }
 
   render () {
@@ -135,13 +135,13 @@ export default class Home extends Component {
               />
             : null
         }
-        <div className={classes.addTodo}>
+        <div className={classes.addRecord}>
           <NewRecordPanel
             onNewClick={this.handleAdd}
             disabled={false}
           />
         </div>
-        <div className={classes.todos}>
+        <div className={classes.records}>
           {
             !isLoaded(todos)
               ? <CircularProgress />
@@ -151,12 +151,12 @@ export default class Home extends Component {
                   {
                     todos &&
                       map(todos, (todo, id) => (
-                        <TodoItem
+                        <RecordItem
                           key={id}
                           id={id}
-                          todo={todo}
-                          onEditClick={this.editTodo}
-                          onDeleteClick={this.deleteTodo}
+                          record={todo}
+                          onEditClick={this.editRecord}
+                          onDeleteClick={this.deleteRecord}
                         />
                       )
                     )

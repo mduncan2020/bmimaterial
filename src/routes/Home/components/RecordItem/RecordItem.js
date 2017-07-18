@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import classes from './TodoItem.scss'
+import classes from './RecordItem.scss'
+
 import { ListItem } from 'material-ui/List'
 import Delete from 'material-ui/svg-icons/action/delete-forever'
 import Edit from 'material-ui/svg-icons/content/create'
-// import { isObject } from 'lodash'
-
-// import IconButton from 'material-ui/IconButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
@@ -20,9 +18,9 @@ const dialogContent = {
   margin: '50px'
 }
 
-class TodoItem extends Component {
+class RecordItem extends Component {
   static propTypes = {
-    todo: PropTypes.object.isRequired,
+    record: PropTypes.object.isRequired,
     id: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number
@@ -36,8 +34,8 @@ class TodoItem extends Component {
 
     this.state = {
       dialogOpen: false,
-      weight: this.props.todo.weight,
-      createdAt: this.props.todo.createdAt
+      weight: this.props.record.weight,
+      createdAt: this.props.record.createdAt
     }
 
     this.onHandleDialogClose = this.onHandleDialogClose.bind(this)
@@ -65,10 +63,10 @@ class TodoItem extends Component {
     const { weight } = this.state;
     const { createdAt } = this.state;
     */
-    var editted = this.props.todo
+    var editted = this.props.record
     editted.weight = this.state.weight // this.state.weight.toString();
     editted.createdAt = this.state.createdAt
-    this.props.onEditClick({id: (this.props.todo._key || this.props.id), todo: editted})
+    this.props.onEditClick({id: (this.props.record._key || this.props.id), record: editted})
     this.setState({dialogOpen: false})
   }
 
@@ -96,22 +94,22 @@ class TodoItem extends Component {
   }
 
   render () {
-    const { todo, id, onDeleteClick } = this.props
+    const { record, id, onDeleteClick } = this.props
 
     return (
       <div className={classes.container}>
         <ListItem
           rightIcon={
             <span>
-              <Edit onClick={() => this.onEditRecordClick(todo._key || id)} />
-              <Delete onClick={() => onDeleteClick(todo._key || id)} />
+              <Edit onClick={() => this.onEditRecordClick(record._key || id)} />
+              <Delete onClick={() => onDeleteClick(record._key || id)} />
             </span>
           }
-          primaryText={todo.weight === undefined ? todo.text : todo.weight.toString()}
+          primaryText={record.weight === undefined ? record.text : record.weight.toString()}
           secondaryText={
             <p>
-              <span className='TodoItem-Text'>
-                Created: { new Date(todo.createdAt).toDateString() }
+              <span>
+                Created: { new Date(record.createdAt).toDateString() }
               </span>
             </p>
           }
@@ -143,4 +141,4 @@ class TodoItem extends Component {
 
 export default reduxForm({
   form: RECORD_FORM_NAME
-})(TodoItem)
+})(RecordItem)

@@ -3,7 +3,7 @@
   @extend .flex-column-center;
   padding-top: 2rem;
 }
-.todos {
+.records {
   @extend .flex-column-center;
   //margin-top: 1rem;
 }
@@ -14,7 +14,7 @@
 .info {
   @extend .flex-column-center;
 }
-.addTodo {
+.addRecord {
   @extend .flex-column-center;
   left: 0;
 }
