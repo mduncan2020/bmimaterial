@@ -25,21 +25,21 @@ import classes from './HomeContainer.scss'
 @firebaseConnect([
   // 'todos' // sync full list of todos
   // { path: 'todos', type: 'once' } // for loading once instead of binding
-  { path: 'todos', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
+  { path: 'records', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
   // { path: 'todos', populates } // populate
 ])
 @connect(
   ({firebase}) => ({
     auth: pathToJS(firebase, 'auth'),
     account: pathToJS(firebase, 'profile'),
-    todos: dataToJS(firebase, 'todos')
+    records: dataToJS(firebase, 'records')
     // todos: populatedDataToJS(firebase, '/todos', populates), // if populating
     // todos: orderedToJS(firebase, '/todos') // if using ordering such as orderByChild
   })
 )
 export default class Home extends Component {
   static propTypes = {
-    todos: PropTypes.oneOfType([
+    records: PropTypes.oneOfType([
       PropTypes.object, // object if using dataToJS
       PropTypes.array // array if using orderedToJS
     ]),
@@ -61,14 +61,6 @@ export default class Home extends Component {
     error: null
   }
 
-  toggleDone = (todo, id) => {
-    const { firebase, auth } = this.props
-    if (!auth || !auth.uid) {
-      return this.setState({ error: 'You must be Logged into Toggle Done' })
-    }
-    return firebase.set(`/todos/${id}/done`, !todo.done)
-  }
-
   editRecord = (editContainer) => {
 //    const { todos, auth, firebase } = this.props
     const { auth } = this.props
@@ -80,7 +72,7 @@ export default class Home extends Component {
     if (editContainer.record.owner !== auth.uid) {
       return this.setState({ error: 'You must own the record to Edit' })
     }
-    return this.props.firebase.set(`/todos/${editContainer.id}`, editContainer.record)
+    return this.props.firebase.set(`/records/${editContainer.id}`, editContainer.record)
       .catch((err) => {
         console.error('Error editting record: ', err) // eslint-disable-line no-console
         this.setState({ error: 'Error Editting record' })
@@ -89,16 +81,16 @@ export default class Home extends Component {
   }
 
   deleteRecord = (id) => {
-    const { todos, auth, firebase } = this.props
+    const { records, auth, firebase } = this.props
     if (!auth || !auth.uid) {
       return this.setState({ error: 'You must be logged in to delete' })
     }
     // return this.setState({ error: 'Delete example requires using populate' })
     // only works if populated
-    if (todos[id].owner !== auth.uid) {
+    if (records[id].owner !== auth.uid) {
       return this.setState({ error: 'You must own the record to delete' })
     }
-    return firebase.remove(`/todos/${id}`)
+    return firebase.remove(`/records/${id}`)
       .catch((err) => {
         console.error('Error removing record: ', err) // eslint-disable-line no-console
         this.setState({ error: 'Error Removing Record' })
@@ -116,11 +108,11 @@ export default class Home extends Component {
     // attach a timestamp
     newRecord.createdAt = this.props.firebase.database.ServerValue.TIMESTAMP
     // using this.props.firebase.pushWithMeta here instead would automatically attach createdBy and createdAt
-    return this.props.firebase.push('/todos', newRecord)
+    return this.props.firebase.push('/records', newRecord)
   }
 
   render () {
-    const { todos } = this.props
+    const { records } = this.props
     const { error } = this.state
 
     return (
@@ -143,18 +135,18 @@ export default class Home extends Component {
         </div>
         <div className={classes.records}>
           {
-            !isLoaded(todos)
+            !isLoaded(records)
               ? <CircularProgress />
               : <Paper className={classes.paper}>
                 <Subheader>History</Subheader>
                 <List className={classes.list}>
                   {
-                    todos &&
-                      map(todos, (todo, id) => (
+                    records &&
+                      map(records, (record, id) => (
                         <RecordItem
                           key={id}
                           id={id}
-                          record={todo}
+                          record={record}
                           onEditClick={this.editRecord}
                           onDeleteClick={this.deleteRecord}
                         />

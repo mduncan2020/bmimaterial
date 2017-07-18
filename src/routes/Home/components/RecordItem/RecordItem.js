@@ -129,8 +129,8 @@ class RecordItem extends Component {
           {this.renderDateField()}
 
           <div>
-            <FlatButton label='Cancel' secondary={true} onTouchTap={this.onHandleDialogClose} />
-            <FlatButton label='Save' primary={true} type='submit' onTouchTap={this.handleSave} />
+            <FlatButton label='Cancel' secondary onTouchTap={this.onHandleDialogClose} />
+            <FlatButton label='Save' primary type='submit' onTouchTap={this.handleSave} />
           </div>
 
         </Dialog>
