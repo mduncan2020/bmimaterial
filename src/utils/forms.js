@@ -11,3 +11,11 @@ const minValue = min => value =>
   value && value < min ? `Must be at least ${min}` : undefined
 
 export const minValue1 = minValue(1)
+
+export const calculateBmi = ( weight, height, isMetric ) => {
+  var bmi = weight / (height * height);
+  if (!isMetric){
+    bmi = bmi * 703;
+  }
+  return bmi.toFixed(1);
+} 

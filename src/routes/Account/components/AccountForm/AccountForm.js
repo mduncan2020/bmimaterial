@@ -31,7 +31,6 @@ export const AccountForm = ({ account, handleSubmit, submitting }) => (
       component={TextField}
       label='Height'
     />
-    <Field name='isMetric' component={BinaryToggle} label={account.isMetric ? 'Metric (cm / kg)': 'inches / lbs'} />   
     {
       !!account && !!account.providerData &&
         <div>

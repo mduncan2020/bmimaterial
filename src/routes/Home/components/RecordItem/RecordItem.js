@@ -10,6 +10,9 @@ import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 // import { required, validateNumber, minValue1 } from 'utils/forms'
 // import { Field, reduxForm, submit } from 'redux-form'
+
+import BmiChip from 'components/BmiChip'
+import { calculateBmi } from 'utils/forms'
 import { reduxForm } from 'redux-form'
 import { RECORD_FORM_NAME } from 'constants'
 
@@ -25,6 +28,7 @@ class RecordItem extends Component {
       PropTypes.string,
       PropTypes.number
     ]),
+    height: PropTypes.number,
     onDeleteClick: PropTypes.func,
     onEditClick: PropTypes.func
   }
@@ -58,11 +62,6 @@ class RecordItem extends Component {
   }
 
   handleSave = () => {
-    /*
-    const { newWeight } = this.refs;
-    const { weight } = this.state;
-    const { createdAt } = this.state;
-    */
     var editted = this.props.record
     editted.weight = this.state.weight // this.state.weight.toString();
     editted.createdAt = this.state.createdAt
@@ -97,21 +96,22 @@ class RecordItem extends Component {
     const { record, id, onDeleteClick } = this.props
 
     return (
-      <div className={classes.container}>
-        <ListItem
+      <div className={classes.container1}>
+        <ListItem          
           rightIcon={
             <span>
               <Edit onClick={() => this.onEditRecordClick(record._key || id)} />
               <Delete onClick={() => onDeleteClick(record._key || id)} />
             </span>
           }
-          primaryText={record.weight === undefined ? record.text : record.weight.toString()}
-          secondaryText={
-            <p>
-              <span>
-                Created: { new Date(record.createdAt).toDateString() }
-              </span>
-            </p>
+          primaryText={ 
+            <span>
+            
+            <BmiChip value={calculateBmi(record.weight, this.props.height, true)} label={record.weight.toString()} />
+            </span>
+          }
+          secondaryText={ <span>On: { new Date(record.createdAt).toDateString()}</span> 
+            
           }
           secondaryTextLines={2}
         />

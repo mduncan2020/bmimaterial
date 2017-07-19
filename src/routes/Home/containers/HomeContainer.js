@@ -54,7 +54,8 @@ export default class Home extends Component {
     }),
     auth: PropTypes.shape({
       uid: PropTypes.string
-    })
+    }),
+    account: PropTypes.object
   }
 
   state = {
@@ -129,6 +130,7 @@ export default class Home extends Component {
         }
         <div className={classes.addRecord}>
           <NewRecordPanel
+            height={Number(this.props.account.height)}
             onNewClick={this.handleAdd}
             disabled={false}
           />
@@ -147,6 +149,7 @@ export default class Home extends Component {
                           key={id}
                           id={id}
                           record={record}
+                          height={Number(this.props.account.height)}
                           onEditClick={this.editRecord}
                           onDeleteClick={this.deleteRecord}
                         />

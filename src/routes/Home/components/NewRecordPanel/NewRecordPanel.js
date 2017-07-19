@@ -7,8 +7,10 @@ import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 // import Subheader from 'material-ui/Subheader'
+//import BmiChip from '../../../../components/BmiChip'
+import BmiChip from 'components/BmiChip'
 import classes from './NewRecordPanel.scss'
-import { required, validateNumber, minValue1 } from 'utils/forms'
+import { required, validateNumber, minValue1, calculateBmi } from 'utils/forms'
 import { Field, reduxForm, submit } from 'redux-form'
 import { RECORD_FORM_NAME } from 'constants'
 
@@ -19,8 +21,8 @@ const dialogContent = {
 
 class NewRecordPanel extends Component {
   static propTypes = {
-    onNewClick: PropTypes.func// ,
-//    disabled: PropTypes.bool
+    height: PropTypes.number,
+    onNewClick: PropTypes.func
   }
 
   constructor (props) {
@@ -33,7 +35,9 @@ class NewRecordPanel extends Component {
           marginLeft: 20
         }
       },
-      addDialogOpen: false
+      addDialogOpen: false,
+      weight: 0,
+      bmi: null
     }
 
     this.onHandleDialogClose = this.onHandleDialogClose.bind(this)
@@ -68,7 +72,11 @@ class NewRecordPanel extends Component {
       floatingLabelText='New Weight'
       type='number'
       className={classes.input}
-      onChange={({ target }) => this.setState({weight: Number(target.value)})}
+      onChange={({ target }) => {
+          this.setState({weight: Number(target.value)}) 
+          this.setState({bmi: calculateBmi( Number(target.value), this.props.height, true ) })
+          }
+        }
     />
   }
 
@@ -88,7 +96,7 @@ class NewRecordPanel extends Component {
           className={classes.container}
           contentStyle={dialogContent}
           actions={[]}>
-
+          
           <form onSubmit={this.handleAdd} className={classes.form}>
             <Field
               name='newWeight'
@@ -98,7 +106,8 @@ class NewRecordPanel extends Component {
               validate={[required, validateNumber, minValue1]}
               warn={minValue1}
             />
-
+            <BmiChip value={this.state.bmi}/>
+           
             <div >
               <FlatButton label='Cancel' secondary onTouchTap={this.onHandleDialogClose} />
               <FlatButton label='Save' primary type='submit' onTouchTap={this.submitForm} />
