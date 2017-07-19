@@ -112,6 +112,12 @@ export default class Home extends Component {
     return this.props.firebase.push('/records', newRecord)
   }
 
+  getHeight () {
+    if (this.props.auth && this.props.account){
+      return Number(this.props.account.height);
+    }
+  }
+
   render () {
     const { records } = this.props
     const { error } = this.state
@@ -130,7 +136,7 @@ export default class Home extends Component {
         }
         <div className={classes.addRecord}>
           <NewRecordPanel
-            height={Number(this.props.account.height)}
+            height={this.getHeight()}
             onNewClick={this.handleAdd}
             disabled={false}
           />
@@ -149,7 +155,7 @@ export default class Home extends Component {
                           key={id}
                           id={id}
                           record={record}
-                          height={Number(this.props.account.height)}
+                          height={this.getHeight()}
                           onEditClick={this.editRecord}
                           onDeleteClick={this.deleteRecord}
                         />

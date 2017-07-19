@@ -105,9 +105,8 @@ class RecordItem extends Component {
             </span>
           }
           primaryText={ 
-            <span>
-            
-            <BmiChip value={calculateBmi(record.weight, this.props.height, true)} label={record.weight.toString()} />
+            <span>            
+              <BmiChip value={calculateBmi(record.weight, Number(this.props.height), true)} label={record.weight.toString()} />
             </span>
           }
           secondaryText={ <span>On: { new Date(record.createdAt).toDateString()}</span> 
