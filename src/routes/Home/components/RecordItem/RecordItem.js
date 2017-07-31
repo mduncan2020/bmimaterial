@@ -106,7 +106,7 @@ class RecordItem extends Component {
           primaryText={
             <span>
               <BmiChip
-                value={calculateBmi(record.weight, Number(this.props.height), true)}
+                value={calculateBmi(Number(record.weight), Number(this.props.height), true)}
                 label={record.weight.toString()} />
             </span>
           }

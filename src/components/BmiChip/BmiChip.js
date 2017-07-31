@@ -19,7 +19,7 @@ const styles = {
 
 export default class BmiChip extends Component {
   static propTypes = {
-    value: PropTypes.number,
+    value: PropTypes.string, // to support decimal places
     label: PropTypes.string
   }
 

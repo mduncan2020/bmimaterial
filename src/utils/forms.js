@@ -17,5 +17,6 @@ export const calculateBmi = (weight, height, isMetric) => {
   if (!isMetric) {
     bmi = bmi * 703
   }
+
   return bmi.toFixed(1)
 }
