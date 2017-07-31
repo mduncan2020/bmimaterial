@@ -97,20 +97,20 @@ class RecordItem extends Component {
 
     return (
       <div className={classes.container1}>
-        <ListItem          
-          rightIcon={
+        <ListItem rightIcon={
+          <span>
+            <Edit onClick={() => this.onEditRecordClick(record._key || id)} />
+            <Delete onClick={() => onDeleteClick(record._key || id)} />
+          </span>
+          }
+          primaryText={
             <span>
-              <Edit onClick={() => this.onEditRecordClick(record._key || id)} />
-              <Delete onClick={() => onDeleteClick(record._key || id)} />
+              <BmiChip
+                value={calculateBmi(record.weight, Number(this.props.height), true)}
+                label={record.weight.toString()} />
             </span>
           }
-          primaryText={ 
-            <span>            
-              <BmiChip value={calculateBmi(record.weight, Number(this.props.height), true)} label={record.weight.toString()} />
-            </span>
-          }
-          secondaryText={ <span>On: { new Date(record.createdAt).toDateString()}</span> 
-            
+          secondaryText={<span>on { new Date(record.createdAt).toDateString()}</span>
           }
           secondaryTextLines={2}
         />

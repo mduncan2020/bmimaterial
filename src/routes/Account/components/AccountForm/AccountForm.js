@@ -3,15 +3,10 @@ import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'components/TextField'
-import BinaryToggle from 'components/BinaryToggle'
-import { ACCOUNT_FORM_NAME } from 'constants'
+// import BinaryToggle from 'components/BinaryToggle'
+import { ACCOUNT_FORM_NAME, HOME_PATH } from 'constants'
 import ProviderDataForm from '../ProviderDataForm'
 import classes from './AccountForm.scss'
-
-import {
-  HOME_PATH
-} from 'constants'
-
 
 export const AccountForm = ({ account, handleSubmit, submitting }) => (
   <form className={classes.container} onSubmit={handleSubmit}>
@@ -35,27 +30,24 @@ export const AccountForm = ({ account, handleSubmit, submitting }) => (
       !!account && !!account.providerData &&
         <div>
           <h4>Linked Accounts</h4>
-          <ProviderDataForm
-            providerData={account.providerData}
-          />
+          <ProviderDataForm providerData={account.providerData} />
         </div>
     }
     <div>
       <Link to={HOME_PATH}>
         <RaisedButton
-        secondary
-        label='Cancel'            
+          secondary
+          label='Cancel'
+          className={classes.submit}
+        />
+      </Link>
+      <RaisedButton
+        primary
+        label='Save'
+        type='submit'
         className={classes.submit}
       />
-    </Link>
-    <RaisedButton
-      primary
-      label='Save'
-      type='submit'
-      className={classes.submit}
-    />
     </div>
-    
   </form>
 )
 

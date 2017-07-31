@@ -113,8 +113,8 @@ export default class Home extends Component {
   }
 
   getHeight () {
-    if (this.props.auth && this.props.account){
-      return Number(this.props.account.height);
+    if (this.props.auth && this.props.account) {
+      return Number(this.props.account.height)
     }
   }
 

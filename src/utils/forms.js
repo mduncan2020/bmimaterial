@@ -12,10 +12,10 @@ const minValue = min => value =>
 
 export const minValue1 = minValue(1)
 
-export const calculateBmi = ( weight, height, isMetric ) => {
-  var bmi = weight / (height * height);
-  if (!isMetric){
-    bmi = bmi * 703;
+export const calculateBmi = (weight, height, isMetric) => {
+  var bmi = weight / (height * height)
+  if (!isMetric) {
+    bmi = bmi * 703
   }
-  return bmi.toFixed(1);
-} 
+  return bmi.toFixed(1)
+}

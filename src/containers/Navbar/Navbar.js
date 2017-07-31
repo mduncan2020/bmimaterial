@@ -108,8 +108,8 @@ export default class Navbar extends Component {
 
     const homeMenu = (
       <Link to={accountExists ? `${HOME_PATH}` : '/'} className={classes.brand}>
-          <ActionHome color='white' style={homeStyle}/>
-      </Link>      
+        <ActionHome color='white' style={homeStyle} />
+      </Link>
     )
 
     const rightMenu = accountExists ? (
@@ -137,7 +137,7 @@ export default class Navbar extends Component {
             BMI Material
           </Link>
         }
-        showMenuIconButton={true}
+        showMenuIconButton
         iconElementLeft={homeMenu}
         iconElementRight={rightMenu}
         iconStyleRight={accountExists ? avatarStyles.wrapper : {}}

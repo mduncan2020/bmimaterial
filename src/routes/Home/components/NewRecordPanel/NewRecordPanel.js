@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 // import Subheader from 'material-ui/Subheader'
-//import BmiChip from '../../../../components/BmiChip'
+// import BmiChip from '../../../../components/BmiChip'
 import BmiChip from 'components/BmiChip'
 import classes from './NewRecordPanel.scss'
 import { required, validateNumber, minValue1, calculateBmi } from 'utils/forms'
@@ -73,10 +73,10 @@ class NewRecordPanel extends Component {
       type='number'
       className={classes.input}
       onChange={({ target }) => {
-          this.setState({weight: Number(target.value)}) 
-          this.setState({bmi: calculateBmi( Number(target.value), this.props.height, true ) })
-          }
-        }
+        this.setState({weight: Number(target.value)})
+        this.setState({bmi: calculateBmi(Number(target.value), this.props.height, true)})
+      }
+    }
     />
   }
 
@@ -96,7 +96,7 @@ class NewRecordPanel extends Component {
           className={classes.container}
           contentStyle={dialogContent}
           actions={[]}>
-          
+
           <form onSubmit={this.handleAdd} className={classes.form}>
             <Field
               name='newWeight'
@@ -106,8 +106,8 @@ class NewRecordPanel extends Component {
               validate={[required, validateNumber, minValue1]}
               warn={minValue1}
             />
-            <BmiChip value={this.state.bmi}/>
-           
+            <BmiChip value={this.state.bmi} />
+
             <div >
               <FlatButton label='Cancel' secondary onTouchTap={this.onHandleDialogClose} />
               <FlatButton label='Save' primary type='submit' onTouchTap={this.submitForm} />

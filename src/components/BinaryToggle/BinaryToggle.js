@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react'
-import Toggle from 'material-ui/Toggle';
+import Toggle from 'material-ui/Toggle'
 
 export const BinaryToggle = ({ input, label, meta: { touched, error }, ...custom }) => (
-  
   <Toggle
-    label={label}    
+    label={label}
     {...input}
-    {...custom}    
+    {...custom}
   />
-  
 )
 
 BinaryToggle.propTypes = {
