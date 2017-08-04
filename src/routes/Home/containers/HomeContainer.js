@@ -35,8 +35,8 @@ import classes from './HomeContainer.scss'
     auth: pathToJS(firebase, 'auth'),
     account: pathToJS(firebase, 'profile'),
     // records: dataToJS(firebase, 'records')
-    // records: dataToJS(firebase, 'records')
-    records: orderedToJS(firebase, 'records') 
+     records: dataToJS(firebase, 'records')
+    // records: orderedToJS(firebase, 'records') 
     // todos: populatedDataToJS(firebase, '/todos', populates), // if populating
     // todos: orderedToJS(firebase, '/todos') // if using ordering such as orderByChild
   })
