@@ -37,7 +37,8 @@ class NewRecordPanel extends Component {
       },
       addDialogOpen: false,
       weight: 0,
-      bmi: null
+      bmi: null,
+      saveEnabled: false
     }
 
     this.onHandleDialogClose = this.onHandleDialogClose.bind(this)
@@ -70,11 +71,17 @@ class NewRecordPanel extends Component {
   renderWeightField () {
     return <TextField
       floatingLabelText='New Weight'
-      type='number'
+      type='text' // so decimals can be supported
       className={classes.input}
       onChange={({ target }) => {
-        this.setState({weight: Number(target.value)})
-        this.setState({bmi: calculateBmi(Number(target.value), this.props.height, true)})
+        this.setState({saveEnabled: false})
+        if (validateNumber(target.value) === undefined){
+          this.setState({weight: Number(target.value)})
+          this.setState({bmi: calculateBmi(Number(target.value), this.props.height, true)})
+          if (target.value.length > 0){
+            this.setState({saveEnabled: true})
+          }
+        } 
       }
     }
     />
@@ -110,7 +117,7 @@ class NewRecordPanel extends Component {
 
             <div >
               <FlatButton label='Cancel' secondary onTouchTap={this.onHandleDialogClose} />
-              <FlatButton label='Save' primary type='submit' onTouchTap={this.submitForm} />
+              <FlatButton label='Save' primary type='submit' onTouchTap={this.submitForm} disabled={!this.state.saveEnabled}/>
             </div>
           </form>
         </Dialog>

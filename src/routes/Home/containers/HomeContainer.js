@@ -6,8 +6,8 @@ import {
   firebaseConnect,
   isLoaded,
   pathToJS,
-  dataToJS // needed for full list and once
-  // orderedToJS // needed for ordered list
+  dataToJS, // needed for full list and once
+  orderedToJS // needed for ordered list
   // populatedDataToJS // needed for populated list
 } from 'react-redux-firebase'
 import { UserIsAuthenticated } from 'utils/router'
@@ -21,18 +21,22 @@ import NewRecordPanel from '../components/NewRecordPanel'
 import classes from './HomeContainer.scss'
 
 // const populates = [{ child: 'owner', root: 'users', keyProp: 'uid' }]
+// const populates = [{ child: 'owner', root: 'users' }]
 @UserIsAuthenticated
 @firebaseConnect([
   // 'todos' // sync full list of todos
   // { path: 'todos', type: 'once' } // for loading once instead of binding
-  { path: 'records', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
-  // { path: 'todos', populates } // populate
+  // { path: 'records', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
+   { path: 'records', queryParams: ['orderByChild=createdAt', 'limitToLast=10'] } // 10 most recent
+  // { path: 'todos', populates } // populate  
 ])
 @connect(
   ({firebase}) => ({
     auth: pathToJS(firebase, 'auth'),
     account: pathToJS(firebase, 'profile'),
-    records: dataToJS(firebase, 'records')
+    // records: dataToJS(firebase, 'records')
+    // records: dataToJS(firebase, 'records')
+    records: orderedToJS(firebase, 'records') 
     // todos: populatedDataToJS(firebase, '/todos', populates), // if populating
     // todos: orderedToJS(firebase, '/todos') // if using ordering such as orderByChild
   })

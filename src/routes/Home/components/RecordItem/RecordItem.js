@@ -84,7 +84,7 @@ class RecordItem extends Component {
       hintText='Date'
       container='inline'
       mode='landscape'
-      onChange={(event, date) => this.setState({createdAt: date})}
+      onChange={(event, date) => this.setState({createdAt: date.valueOf()})}
       value={new Date(this.state.createdAt)} />
   }
 

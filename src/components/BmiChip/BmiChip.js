@@ -13,7 +13,8 @@ const styles = {
   avatar: {
     fontWeight: 'bold',
     backgroundColor: 'black',
-    fontStyle: 'normal'
+    fontStyle: 'normal',
+    fontSize: '15px'
   }
 }
 
@@ -45,7 +46,7 @@ export default class BmiChip extends Component {
 
   renderLabel () {
     if (this.hasLabel()) {
-      return <Avatar size={48} style={styles.avatar}>{this.props.label}</Avatar>
+      return <Avatar size={48} style={styles.avatar}>{this.props.label}</Avatar> 
     }
   }
 
