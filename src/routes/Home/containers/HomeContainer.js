@@ -27,7 +27,8 @@ import classes from './HomeContainer.scss'
   // 'todos' // sync full list of todos
   // { path: 'todos', type: 'once' } // for loading once instead of binding
   // { path: 'records', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
-   { path: 'records', queryParams: ['orderByChild=createdAt', 'limitToLast=10'] } // 10 most recent
+   { path: 'records', queryParams: ['orderByChild=createdAt', 'limitToLast=7'] } // 7 most recent
+  // { path: 'records', queryParams: ['orderByChild=createdAt'] } // 10 most recent
   // { path: 'todos', populates } // populate  
 ])
 @connect(
@@ -35,8 +36,8 @@ import classes from './HomeContainer.scss'
     auth: pathToJS(firebase, 'auth'),
     account: pathToJS(firebase, 'profile'),
     // records: dataToJS(firebase, 'records')
-     records: dataToJS(firebase, 'records')
-    // records: orderedToJS(firebase, 'records') 
+    // records: dataToJS(firebase, 'records')
+     records: orderedToJS(firebase, 'records') 
     // todos: populatedDataToJS(firebase, '/todos', populates), // if populating
     // todos: orderedToJS(firebase, '/todos') // if using ordering such as orderByChild
   })
@@ -155,9 +156,19 @@ export default class Home extends Component {
                   {
                     records &&
                       map(records, (record, id) => (
+                        /*
                         <RecordItem
                           key={id}
                           id={id}
+                          record={record}
+                          height={this.getHeight()}
+                          onEditClick={this.editRecord}
+                          onDeleteClick={this.deleteRecord}
+                        />
+                        */
+                        <RecordItem
+                          key={record.key}
+                          id={record.key}
                           record={record}
                           height={this.getHeight()}
                           onEditClick={this.editRecord}
