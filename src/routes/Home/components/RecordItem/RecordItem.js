@@ -100,7 +100,7 @@ class RecordItem extends Component {
         <ListItem rightIcon={
           <span>
             <Edit onClick={() => this.onEditRecordClick(record._key || id)} />
-            <Delete onClick={() => onDeleteClick(record._key || id)} />
+            <Delete onClick={() => onDeleteClick(record._key || id, record)} />
           </span>
           }
           primaryText={

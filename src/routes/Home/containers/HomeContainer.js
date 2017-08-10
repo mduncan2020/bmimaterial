@@ -86,17 +86,18 @@ export default class Home extends Component {
       })
   }
 
-  deleteRecord = (id) => {
+  deleteRecord = (id, record) => {
     const { records, auth, firebase } = this.props
     if (!auth || !auth.uid) {
       return this.setState({ error: 'You must be logged in to delete' })
     }
     // return this.setState({ error: 'Delete example requires using populate' })
     // only works if populated
-    if (records[id].owner !== auth.uid) {
+    //if (records[id].owner !== auth.uid) {
+    if (record.owner !== auth.uid) {
       return this.setState({ error: 'You must own the record to delete' })
     }
-    return firebase.remove(`/records/${id}`)
+    return this.props.firebase.remove(`/records/${id}`)
       .catch((err) => {
         console.error('Error removing record: ', err) // eslint-disable-line no-console
         this.setState({ error: 'Error Removing Record' })
@@ -156,15 +157,7 @@ export default class Home extends Component {
                   {
                     records &&
                       map(records, (record, id) => (
-                        /*
-                        <RecordItem
-                          key={id}
-                          id={id}
-                          record={record}
-                          height={this.getHeight()}
-                          onEditClick={this.editRecord}
-                          onDeleteClick={this.deleteRecord}
-                        />
+                        /* <RecordItem key={id} id={id} record={record} height={this.getHeight()} onEditClick={this.editRecord} onDeleteClick={this.deleteRecord} />
                         */
                         <RecordItem
                           key={record.key}
