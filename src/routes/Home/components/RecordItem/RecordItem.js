@@ -112,7 +112,7 @@ class RecordItem extends Component {
           }
           secondaryText={<span>on { new Date(record.createdAt).toDateString()}</span>
           }
-          secondaryTextLines={2}
+          secondaryTextLines={1}
         />
 
         <Dialog

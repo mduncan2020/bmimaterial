@@ -5,11 +5,14 @@
 }
 .records {
   @extend .flex-column-center;
-  //margin-top: 1rem;
+  //margin-top: 1rem;  
 }
 .paper {
   padding: 1rem;
   margin-bottom: 4rem;
+  overflow: none;
+  //overflow: scroll;
+  //height: 300px; // TODO media-query based height
 }
 .info {
   @extend .flex-column-center;

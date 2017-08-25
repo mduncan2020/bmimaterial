@@ -24,10 +24,13 @@ import classes from './HomeContainer.scss'
 // const populates = [{ child: 'owner', root: 'users' }]
 @UserIsAuthenticated
 @firebaseConnect([
+  // https://www.firebase.com/docs/web/guide/retrieving-data.html#section-queries
+  // http://react-redux-firebase.com/docs/queries
   // 'todos' // sync full list of todos
   // { path: 'todos', type: 'once' } // for loading once instead of binding
   // { path: 'records', queryParams: ['orderByKey', 'limitToLast=10'] } // 10 most recent
    { path: 'records', queryParams: ['orderByChild=createdAt', 'limitToLast=7'] } // 7 most recent
+  // { path: 'records', queryParams: ['orderByChild=owner', 'equalTo=rlyzS3dae9UeQwXkCTi5OCBLrmt2', 'limitToLast=7'] } // 7 most recent
   // { path: 'records', queryParams: ['orderByChild=createdAt'] } // 10 most recent
   // { path: 'todos', populates } // populate  
 ])
