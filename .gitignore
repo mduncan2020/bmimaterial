@@ -2,6 +2,7 @@
 **/*.log
 .DS_Store
 **/.DS_Store
+*.zip
 
 node_modules
 coverage
